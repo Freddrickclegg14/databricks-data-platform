@@ -1,0 +1,19 @@
+bundle:
+  name: databricks-data-platform
+
+include:
+  - resources/*.yml
+
+variables:
+  catalog_name:
+    description: Target Unity Catalog name
+    default: dev_catalog
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://dbc-7b4ff3a0-6353.cloud.databricks.com
+    variables:
+      catalog_name: dev_catalog
