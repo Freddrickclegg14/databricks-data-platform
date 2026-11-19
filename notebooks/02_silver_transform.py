@@ -60,7 +60,8 @@ print("unmatched skill_abr (null skill_name after join):",
 # DBTITLE 1,from pyspark.sql.functions import when
 df_bronze_salaries = spark.table(f"{catalog}.bronze_layer.bronze_salaries")
 
-from pyspark.sql.functions import when, col, coalesce
+from pyspark.sql.functions import coalesce, col, when
+
 
 def annualize(amount_col):
     return (
