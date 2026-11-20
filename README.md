@@ -22,7 +22,9 @@ Average salary rises monotonically with seniority across every level in the data
 | Director | 1,268 | $146,554 | $198,016 |
 | Executive | 382 | $173,645 | $229,933 |
 
-This is based on **36,046 of 123,849 postings (29.1%)** — the subset with usable salary data. Skill-clustering breakdowns by seniority (245 rows) and salary band (140 rows) are available in `gold_layer.gold_skills_by_seniority` and `gold_layer.gold_skills_by_salary_band`.
+This is based on **36,046 of 123,849 postings (29.1%)** — the subset with usable salary data.
+
+**Skill clustering is a weaker signal than seniority/salary.** The dataset's skill taxonomy is only 35 broad categories, and Information Technology, Sales, and Management dominate the top-3 skills across nearly every seniority level and salary band — there's no sharp, distinct clustering by level at this granularity. The one real, consistent trend: Manufacturing postings are heavily front-loaded at `<60k` (~3,200) and fall off sharply at every band above it, while Engineering starts low at `<60k` (~550), rises to peak at `100-150k` (~1,650), then dips again at `150k+`. The two lines cross around `60-100k`. So skill mix shifts away from Manufacturing and toward Engineering/IT as pay rises, up to a point — a real but modest finding, not the sharp clustering the question originally hoped for. Full breakdowns in `gold_layer.gold_skills_by_seniority` (245 rows) and `gold_layer.gold_skills_by_salary_band` (140 rows).
 
 ## Dataset
 
@@ -90,5 +92,3 @@ databricks bundle validate --profile <your-profile>
 databricks bundle deploy --profile <your-profile>
 databricks bundle run medallion_etl_job --profile <your-profile>
 ```
-
-No schedule is defined — this is a static dataset snapshot, not a live feed, so the job is manually triggered rather than run on a cron.
